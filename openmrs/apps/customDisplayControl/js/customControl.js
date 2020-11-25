@@ -176,22 +176,12 @@ angular.module('bahmni.common.displaycontrol.custom')
                 withCredentials: true
             });
         };
-        var convertUTCtoLocal = function (date, time) {
-            date = date.split("/");
-            var timePeriod = time.split("-")
-            var dateTimeStart = date[2] + "/" + date[1] + "/" + date[0] + " " + timePeriod[0].trim() + " UTC";
-            var dateTimeEnd =  date[2] + "/" + date[1] + "/" + date[0] + " " + timePeriod[1].trim() + " UTC";
-            var startTime = new Date(dateTimeStart).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-            var endTime = new Date(dateTimeEnd).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-            return startTime + " - " + endTime;
-        }
         $q.all([getUpcomingAppointments(), getPastAppointments()]).then(function (response) {
             $scope.upcomingAppointments = response[0].data;
             $scope.upcomingAppointmentsUUIDs = [];
             for (var i=0; i<$scope.upcomingAppointments.length; i++) {
                 $scope.upcomingAppointmentsUUIDs[i] = $scope.upcomingAppointments[i].uuid;
                 delete $scope.upcomingAppointments[i].uuid;
-                $scope.upcomingAppointments[i].DASHBOARD_APPOINTMENTS_SLOT_KEY = convertUTCtoLocal($scope.upcomingAppointments[i].DASHBOARD_APPOINTMENTS_DATE_KEY, $scope.upcomingAppointments[i].DASHBOARD_APPOINTMENTS_SLOT_KEY);
             }
             $scope.upcomingAppointmentsHeadings = _.keys($scope.upcomingAppointments[0]);
             $scope.pastAppointments = response[1].data;
