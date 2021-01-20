@@ -207,11 +207,35 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 }]).directive('vaccination', ['observationsService', 'appService', 'spinner', 'printer', function (observationsService, appService, spinner, printer) {
     var link = function ($scope) {
-        var conceptNames = ["Dosage"];
+        var conceptNames = ["Dosage", "VACCINE MANUFACTURER", "COVID-19-Starter, Vaccine Name"];
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/vaccination.html";
         $scope.certificateUrl = appService.configBaseUrl() + "/customDisplayControl/views/covid19VaccineCertificate.html";
-        spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, "latest", undefined, $scope.visitUuid, undefined).then(function (response) {
-            $scope.dosages = response.data;
+        $scope.observationData = [];
+        spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, undefined, undefined, $scope.visitUuid, undefined).then(function (response) {
+            $scope.observationData = response.data;
+            $scope.dosages = [];
+            var dosage = {};
+            for (var i=$scope.observationData.length - 1; i >= 0; i--) {
+                if ((i+1) % 3 == 0) {
+                    if (i != 5) {
+                        $scope.dosages.push(dosage);
+                    }
+                    dosage = {};
+                }
+                if ($scope.observationData[i].concept.name === 'COVID-19-Starter, Dosage') {
+                    for (var j=0; j<$scope.observationData[i].groupMembers.length; j++) {
+                        console.log($scope.observationData[i].groupMembers[j]);
+                        if ($scope.observationData[i].groupMembers[j].concept.name === 'VACCINE LOT NUMBER') {
+                            dosage.lotNumber = $scope.observationData[i].groupMembers[j].valueAsString;
+                        }
+                    }
+                } else if ($scope.observationData[i].concept.name === 'VACCINE MANUFACTURER') {
+                    dosage.manufacturer = $scope.observationData[i].valueAsString;
+                } else {
+                    dosage.date = Bahmni.Common.Util.DateUtil.formatDateWithoutTime($scope.observationData[i].encounterDateTime);
+                }
+            }
+            $scope.dosages.push(dosage);
         }));
         $scope.print = function () {
             printer.print(appService.configBaseUrl() + "/customDisplayControl/views/printVaccination.html", {patient: $scope.patient, dosages: $scope.dosages, currentDashboardTemplateUrl: $scope.certificateUrl});
