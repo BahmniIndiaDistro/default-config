@@ -217,25 +217,30 @@ angular.module('bahmni.common.displaycontrol.custom')
             var dosage = {};
             for (var i=$scope.observationData.length - 1; i >= 0; i--) {
                 if ((i+1) % 3 == 0) {
-                    if (i != 5) {
+                    if (Object.keys(dosage).length > 0) {
                         $scope.dosages.push(dosage);
                     }
                     dosage = {};
                 }
                 if ($scope.observationData[i].concept.name === 'COVID-19-Starter, Dosage') {
                     for (var j=0; j<$scope.observationData[i].groupMembers.length; j++) {
-                        console.log($scope.observationData[i].groupMembers[j]);
                         if ($scope.observationData[i].groupMembers[j].concept.name === 'VACCINE LOT NUMBER') {
                             dosage.lotNumber = $scope.observationData[i].groupMembers[j].valueAsString;
+                        } 
+                        if ($scope.observationData[i].groupMembers[j].concept.name === 'Vaccine lot expiration date') {
+                            dosage.expireDate = $scope.observationData[i].groupMembers[j].valueAsString;
                         }
                     }
                 } else if ($scope.observationData[i].concept.name === 'VACCINE MANUFACTURER') {
                     dosage.manufacturer = $scope.observationData[i].valueAsString;
                 } else {
-                    dosage.date = Bahmni.Common.Util.DateUtil.formatDateWithoutTime($scope.observationData[i].encounterDateTime);
+                    dosage.vaccineName = $scope.observationData[i].valueAsString;
+                    dosage.date = $scope.observationData[i].encounterDateTime;
                 }
             }
-            $scope.dosages.push(dosage);
+            if ($scope.observationData.length > 0) {
+                $scope.dosages.push(dosage);
+            }    
         }));
         $scope.print = function () {
             printer.print(appService.configBaseUrl() + "/customDisplayControl/views/printVaccination.html", {patient: $scope.patient, dosages: $scope.dosages, currentDashboardTemplateUrl: $scope.certificateUrl});
