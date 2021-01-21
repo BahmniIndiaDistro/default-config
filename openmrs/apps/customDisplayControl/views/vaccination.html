@@ -8,7 +8,8 @@
     <div ng-if="dosages.length > 0">
         <ul>
             <li class="placeholder-text" style="display: flex;justify-content: flex-start;">
-                <span>COVID-19 Certificate</span>
+                <span ng-if="dosages.length >= 2">{{::"DASHBOARD_COVID19_CERTIFICATE" | translate}}</span>
+                <span ng-if="dosages.length < 2 && dosages.length >= 1">{{::"DASHBOARD_COVID19_VACCINE_RECORD_KEY" | translate}}</span>
                 <span
                     ng-dialog={{certificateUrl}}
                     ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page ng-dialog-view"
@@ -17,7 +18,7 @@
                     style="margin-left: auto">
                     <i class="fa fa-eye"></i>
                 </span>
-                <span ng-if="dosages.length >= 2" style="cursor: pointer;">
+                <span style="cursor: pointer;">
                     <i class="fa fa-print" ng-click="print()"></i>
                 </span>
             </li>
