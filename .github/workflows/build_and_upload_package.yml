@@ -1,0 +1,21 @@
+name: Default config - Github action to package default_config as zip
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ stream2/master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Package
+        run:
+          /bin/bash ./scripts/package.sh
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: default_config
+          path: target/default_config.zip

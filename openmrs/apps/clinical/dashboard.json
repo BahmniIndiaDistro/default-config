@@ -412,6 +412,14 @@
                 "formGroup": [ ],
                 "translationKey": "DASHBOARD_TITLE_FORMS2_DISPLAY_CONTROL_KEY"
             },
+            "Vaccination": {
+                "type": "custom",
+                "displayOrder": 25,
+                "config": {
+                    "title": "DASHBOARD_TITLE_VACCINATION_KEY",
+                    "template": "<vaccination></vaccination>"
+                }
+            },
             "Form 2 Obs To Obs": {
                 "displayType": "Half-Page",
                 "translationKey": "DASHBOARD_TITLE_FORMS2_OBS_TO_OBS_DISPLAY_CONTROL_KEY",
