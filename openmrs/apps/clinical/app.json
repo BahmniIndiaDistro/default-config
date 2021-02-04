@@ -97,7 +97,9 @@
                 "allowFutureDates": true
             },
             "COVID-19-Starter, Side effects reported after vaccination": {
-                "allowAddMore": true,
+                "allowAddMore": true
+            },
+            "COVID-19-Starter, Symptoms": {
                 "multiSelect": true
             },
             "Chief Complaint Data": {
