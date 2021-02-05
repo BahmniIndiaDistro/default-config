@@ -1,5 +1,5 @@
 Bahmni.ConceptSet.FormConditions.rules = {
-    'Diastolic Data': function (formName, formFieldValues) {
+    'Diastolic Data' : function (formName, formFieldValues) {
         var systolic = formFieldValues['Systolic'];
         var diastolic = formFieldValues['Diastolic'];
         if (systolic || diastolic) {
@@ -12,7 +12,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             }
         }
     },
-    'Systolic Data': function (formName, formFieldValues) {
+    'Systolic Data' : function (formName, formFieldValues) {
         var systolic = formFieldValues['Systolic'];
         var diastolic = formFieldValues['Diastolic'];
         if (systolic || diastolic) {
@@ -40,7 +40,7 @@ Bahmni.ConceptSet.FormConditions.rules = {
             }
         }
     },
-'COVID-19-Starter, Reason for not eligible for vaccine': function (formName, formFieldValues) {
+    'COVID-19-Starter, Reason for not eligible for vaccine': function (formName, formFieldValues) {
         var reasons = formFieldValues["COVID-19-Starter, Reason for not eligible for vaccine"];
         var showList = [];
         var hideList = [];
@@ -105,5 +105,5 @@ Bahmni.ConceptSet.FormConditions.rules = {
             show: showList,
             hide: hideList
         }
-    },
+    }
 };
