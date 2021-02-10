@@ -1,15 +1,15 @@
 <section class="app-dashboard-integration">
     <h2 class="section-title"><span>{{ config.title | titleTranslate}}</span></h2>
 
-    <ul ng-if="dosages.length == 0">
+    <ul ng-if="dosages.dose1 == null && dosages.dose2 == null">
         <div class="placeholder-text">{{::"DASHBOARD_NO_VACCINATION_DETAILS_KEY" | translate}}</div>
     </ul>
 
-    <div ng-if="dosages.length > 0">
+    <div ng-if="dosages.dose1 != null">
         <ul>
             <li class="placeholder-text" style="display: flex;justify-content: flex-start;">
-                <span ng-if="dosages.length >= 2">{{::"DASHBOARD_COVID19_CERTIFICATE" | translate}}</span>
-                <span ng-if="dosages.length < 2 && dosages.length >= 1">{{::"DASHBOARD_COVID19_VACCINE_RECORD_KEY" | translate}}</span>
+                <span ng-if="dosages.dose2 != null">{{::"DASHBOARD_COVID19_CERTIFICATE" | translate}}</span>
+                <span ng-if="dosages.dose2 == null && dosages.dose1 != null">{{::"DASHBOARD_COVID19_VACCINE_RECORD_KEY" | translate}}</span>
                 <span
                     ng-dialog={{certificateUrl}}
                     ng-dialog-class="ngdialog-theme-default ng-dialog-all-details-page ng-dialog-view"

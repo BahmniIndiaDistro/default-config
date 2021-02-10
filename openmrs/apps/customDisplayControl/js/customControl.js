@@ -179,9 +179,12 @@ angular.module('bahmni.common.displaycontrol.custom')
         $q.all([getUpcomingAppointments(), getPastAppointments()]).then(function (response) {
             $scope.upcomingAppointments = response[0].data;
             $scope.upcomingAppointmentsUUIDs = [];
+            $scope.teleconsultationAppointments = [];
             for (var i=0; i<$scope.upcomingAppointments.length; i++) {
                 $scope.upcomingAppointmentsUUIDs[i] = $scope.upcomingAppointments[i].uuid;
+                $scope.teleconsultationAppointments[i] = $scope.upcomingAppointments[i].DASHBOARD_APPOINTMENTS_TELECONSULTATION;
                 delete $scope.upcomingAppointments[i].uuid;
+                delete $scope.upcomingAppointments[i].DASHBOARD_APPOINTMENTS_TELECONSULTATION;
             }
             $scope.upcomingAppointmentsHeadings = _.keys($scope.upcomingAppointments[0]);
             $scope.pastAppointments = response[1].data;
@@ -195,6 +198,10 @@ angular.module('bahmni.common.displaycontrol.custom')
             var jitsiMeetingId = $scope.upcomingAppointmentsUUIDs[appointmentIndex];
             appService.setTeleConsultationVars(jitsiMeetingId, true);
         };
+        $scope.showJoinTeleconsultationOption = function (appointmentIndex) {
+            return $scope.upcomingAppointments[appointmentIndex].DASHBOARD_APPOINTMENTS_STATUS_KEY == 'Scheduled' && 
+                    $scope.teleconsultationAppointments[appointmentIndex];
+        }
     };
     return {
         restrict: 'E',
@@ -207,40 +214,50 @@ angular.module('bahmni.common.displaycontrol.custom')
     };
 }]).directive('vaccination', ['observationsService', 'appService', 'spinner', 'printer', function (observationsService, appService, spinner, printer) {
     var link = function ($scope) {
-        var conceptNames = ["Dosage", "VACCINE MANUFACTURER", "COVID-19-Starter, Vaccine Name"];
+        var conceptNames = ["COVID-19-Starter, Vaccine"];
         $scope.contentUrl = appService.configBaseUrl() + "/customDisplayControl/views/vaccination.html";
         $scope.certificateUrl = appService.configBaseUrl() + "/customDisplayControl/views/covid19VaccineCertificate.html";
         $scope.observationData = [];
         spinner.forPromise(observationsService.fetch($scope.patient.uuid, conceptNames, undefined, undefined, $scope.visitUuid, undefined).then(function (response) {
-            $scope.observationData = response.data;
-            $scope.dosages = [];
-            var dosage = {};
-            for (var i=$scope.observationData.length - 1; i >= 0; i--) {
-                if ((i+1) % 3 == 0) {
-                    if (Object.keys(dosage).length > 0) {
-                        $scope.dosages.push(dosage);
-                    }
-                    dosage = {};
-                }
-                if ($scope.observationData[i].concept.name === 'COVID-19-Starter, Dosage') {
-                    for (var j=0; j<$scope.observationData[i].groupMembers.length; j++) {
-                        if ($scope.observationData[i].groupMembers[j].concept.name === 'VACCINE LOT NUMBER') {
-                            dosage.lotNumber = $scope.observationData[i].groupMembers[j].valueAsString;
-                        } 
-                        if ($scope.observationData[i].groupMembers[j].concept.name === 'Vaccine lot expiration date') {
-                            dosage.expireDate = $scope.observationData[i].groupMembers[j].valueAsString;
+            $scope.observationData = response.data[0];
+            $scope.dosages = {};
+            if ($scope.observationData != null) {
+                for (var i=0; i<$scope.observationData.groupMembers.length; i++) {
+                    var groupMember = $scope.observationData.groupMembers[i];
+                    if (groupMember.concept.name === 'COVID-19-Starter, COVID-19 Vaccine Name') {
+                        $scope.dosages.vaccineName = groupMember.valueAsString;
+                    } 
+                    if (groupMember.concept.name === 'VACCINE MANUFACTURER') {
+                        $scope.dosages.manufacturer = groupMember.valueAsString;
+                    } 
+                    if (groupMember.concept.name.startsWith('COVID-19-Starter, Dose')) {
+                        var isDose1 = groupMember.concept.name === 'COVID-19-Starter, Dose-1' ? true : false;
+                        if (isDose1) {
+                            $scope.dosages.dose1 = {};
+                        } else {
+                            $scope.dosages.dose2 = {};
+                        }
+                        for (var j=0; j<groupMember.groupMembers.length; j++) {
+                            if (groupMember.groupMembers[j].concept.name === 'VACCINE LOT NUMBER') {
+                                if (isDose1) {
+                                    $scope.dosages.dose1.lotNumber = groupMember.groupMembers[j].valueAsString;
+                                    $scope.dosages.dose1.date = groupMember.groupMembers[j].visitStartDateTime;
+                                } else {
+                                    $scope.dosages.dose2.lotNumber = groupMember.groupMembers[j].valueAsString;
+                                    $scope.dosages.dose2.date = groupMember.groupMembers[j].visitStartDateTime;
+                                }
+                            } 
+                            if (groupMember.groupMembers[j].concept.name === 'Date medication refills due') {
+                                if (isDose1) {
+                                    $scope.dosages.dose1.dueDate = groupMember.groupMembers[j].valueAsString;
+                                } else {
+                                    $scope.dosages.dose2.dueDate = groupMember.groupMembers[j].valueAsString;
+                                }
+                            }
                         }
                     }
-                } else if ($scope.observationData[i].concept.name === 'VACCINE MANUFACTURER') {
-                    dosage.manufacturer = $scope.observationData[i].valueAsString;
-                } else {
-                    dosage.vaccineName = $scope.observationData[i].valueAsString;
-                    dosage.date = $scope.observationData[i].encounterDateTime;
                 }
             }
-            if ($scope.observationData.length > 0) {
-                $scope.dosages.push(dosage);
-            }    
         }));
         $scope.print = function () {
             printer.print(appService.configBaseUrl() + "/customDisplayControl/views/printVaccination.html", {patient: $scope.patient, dosages: $scope.dosages, currentDashboardTemplateUrl: $scope.certificateUrl});
