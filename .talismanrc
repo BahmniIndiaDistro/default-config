@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: openmrs/apps/reports/sql/secondDoseFollowUp.sql
+  checksum: 2e13756f3f6c91b89911c754f3704ea1d4d5dce656c582659528915e186184e6
+
