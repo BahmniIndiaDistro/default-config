@@ -1,0 +1,16 @@
+version: 0.0
+os: linux
+files:
+  - source: config
+    destination: /opt/bahmni-web/etc/bahmni_config
+permissions:
+  - object: /opt/bahmni-web/etc/bahmni_config
+    owner: bahmni
+    group: bahmni
+    pattern: '**'
+    type:
+      - directory
+      - file
+hooks:
+  BeforeInstall:
+    - location: cleanup.sh

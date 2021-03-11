@@ -1,0 +1,46 @@
+name: Default config - Github actions CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ stream3/master ]
+
+jobs:
+  build:
+    env:
+      PACKAGE_NAME: default_config_${{ github.run_number }}.zip
+      CODEDEPLOY_APPLICATION_NAME: default-config
+      S3_BUCKET_NAME: bahmni-covid-19-qa-demo
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Package
+        run: |
+          ./scripts/package.sh
+          mkdir -p staging/config
+          unzip ./target/default_config.zip -d staging/config
+          cp deployment_script/* staging/
+          cd staging
+          zip -r ../$PACKAGE_NAME *
+
+      - name: Configure AWS deploy credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_DEPLOY_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_DEPLOY_SECRET_ACCESS_KEY }}
+          aws-region: ap-south-1
+
+      - name: Push to s3
+        run: |
+          aws s3 cp $PACKAGE_NAME s3://$S3_BUCKET_NAME/$CODEDEPLOY_APPLICATION_NAME/$PACKAGE_NAME
+
+      - name: Create deployment
+        run: |
+          aws deploy create-deployment \
+            --application-name $CODEDEPLOY_APPLICATION_NAME \
+            --deployment-config-name CodeDeployDefault.AllAtOnce \
+            --deployment-group-name qa-demo \
+            --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=$CODEDEPLOY_APPLICATION_NAME/$PACKAGE_NAME
+
