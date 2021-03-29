@@ -18,6 +18,10 @@
             {
                 "id": "org.bahmni.registration.conceptSetGroup.observations",
                 "description": "Registration Second Page Forms"
+            },
+            {
+                "id": "org.bahmni.registration.identifier.ndhm.source",
+                "description": "NDHM HealthID Verification"
             }
         ],
         "contextModel": [
