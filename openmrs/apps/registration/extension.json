@@ -74,7 +74,7 @@
         "id": "org.bahmni.registration.identifier.ndhmIdentifierSrc",
         "extensionPointId": "org.bahmni.registration.identifier.ndhm.source",
         "type": "link",
-        "template" : "/NDHM/healthIdVerificationTemplate.html",
+        "template" : "/ndhm/healthIdVerificationTemplate.html",
         "controller": "HealthIdVerificationController",
         "extensionParams": {
             "hipUrl" : "https://ndhm-dev.bahmni-covid19.in/hiprovider"
