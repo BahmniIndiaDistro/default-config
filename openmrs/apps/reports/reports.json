@@ -49,10 +49,13 @@
             ],
             "showVisitInfo": true,
             "showProvider": true,
-            "conceptNamesToFilter": [
-            ],
+            "conceptNamesToFilter": [],
             "conceptNameDisplayFormat": "shortNamePreferred",
-            "conceptValuesToFilter": ["0..20","100..","True"],
+            "conceptValuesToFilter": [
+                "0..20",
+                "100..",
+                "True"
+            ],
             "conceptClassesToFilter": [],
             "locationTagsToFilter": [],
             "programsToFilter": [],
@@ -65,37 +68,39 @@
             ]
         }
     },
-    "testFormReport":{
-    "name": "Test Forms Report",
-    "type": "forms",
-    "requiredPrivilege": "app:reports",
-     "config": {
-     "patientAttributes": [
-            "caste",
-            "class",
-            "education",
-            "occupation",
-            "primaryContact"
-        ],
-     "patientAddresses": [
-            "address3",
-            "city_village"
-        ],
-     "visitAttributes": [
-            "Visit Status",
-            "Admission Status"
-        ],    
-     "showVisitInfo": true,
-     "showProvider": true,
-     "formNamesToFilter": ["Vitals"],
-     "conceptNameDisplayFormat": "shortNamePreferred",
-     "locationTagsToFilter": [],
-     "programsToFilter": [],
-     "applyDateRangeFor": "obsDate",
-     "visitTypesToFilter": []
-     }
+    "testFormReport": {
+        "name": "Test Forms Report",
+        "type": "forms",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "patientAttributes": [
+                "caste",
+                "class",
+                "education",
+                "occupation",
+                "primaryContact"
+            ],
+            "patientAddresses": [
+                "address3",
+                "city_village"
+            ],
+            "visitAttributes": [
+                "Visit Status",
+                "Admission Status"
+            ],
+            "showVisitInfo": true,
+            "showProvider": true,
+            "formNamesToFilter": [
+                "Vitals"
+            ],
+            "conceptNameDisplayFormat": "shortNamePreferred",
+            "locationTagsToFilter": [],
+            "programsToFilter": [],
+            "applyDateRangeFor": "obsDate",
+            "visitTypesToFilter": []
+        }
     },
-    "formBuilderReport":{
+    "formBuilderReport": {
         "name": "Form builder form Report",
         "type": "formBuilder",
         "requiredPrivilege": "app:reports",
@@ -115,7 +120,9 @@
             ],
             "showVisitInfo": true,
             "showProvider": true,
-            "formNamesToFilter": [ "Test Form"],
+            "formNamesToFilter": [
+                "Test Form"
+            ],
             "conceptNameDisplayFormat": "shortNamePreferred",
             "locationTagsToFilter": [],
             "programsToFilter": [],
@@ -170,6 +177,14 @@
         "requiredPrivilege": "app:reports",
         "config": {
             "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/testCount.sql"
+        }
+    },
+    "Covid19ProgramStatusReport": {
+        "name": "Covid19 Program Status Report",
+        "type": "ElisGeneric",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "sqlPath": "/var/www/bahmni_config/openmrs/apps/reports/sql/covid19StatusReport.sql"
         }
     },
     "bloodPressure": {
@@ -472,22 +487,30 @@
         "type": "aggregation",
         "requiredPrivilege": "app:reports",
         "config": {
-            "report":{
+            "report": {
                 "type": "observations",
                 "config": {
-                    "conceptNamesToFilter":["Diastolic Data", "Systolic Data"],
-                    "showVisitInfo" : true,
+                    "conceptNamesToFilter": [
+                        "Diastolic Data",
+                        "Systolic Data"
+                    ],
+                    "showVisitInfo": true,
                     "forDataAnalysis": true,
-                    "visitAttributes": ["Visit Status", "Admission Status"],
-                    "visitTypesToFilter": ["IPD"]
-
+                    "visitAttributes": [
+                        "Visit Status",
+                        "Admission Status"
+                    ],
+                    "visitTypesToFilter": [
+                        "IPD"
+                    ]
                 }
             },
             "rowGroups": [
                 "Gender"
             ],
             "columnGroups": [
-                "Concept Name", "value"
+                "Concept Name",
+                "value"
             ],
             "distinctGroups": [
                 "Patient Identifier"
@@ -499,7 +522,7 @@
         "type": "aggregation",
         "requiredPrivilege": "app:reports",
         "config": {
-            "report":{
+            "report": {
                 "type": "visits",
                 "config": {
                     "forDataAnalysis": true,
@@ -544,8 +567,7 @@
             "report": {
                 "type": "programs",
                 "config": {
-                    "patientAttributes": [
-                    ],
+                    "patientAttributes": [],
                     "patientAddresses": [
                         "city_village",
                         "address3"
@@ -568,9 +590,8 @@
             "distinctGroups": [
                 "Patient Identifier"
             ],
-            "showTotalRow":true,
-            "showTotalColumn":true
-
+            "showTotalRow": true,
+            "showTotalColumn": true
         }
     },
     "concatenatedReport": {
@@ -636,63 +657,63 @@
             ]
         }
     },
-  "GenericLabOrderReport": {
-    "name": "Lab Order Results",
-    "type": "labOrders",
-    "requiredPrivilege": "app:reports",	
-    "config": {
-      "patientAttributes": [
-        "caste",
-        "class",
-        "education",
-        "occupation",
-        "primaryContact"
-      ],
-      "patientAddresses": [
-        "address3",
-        "city_village"
-      ],
-      "visitAttributes": [
-        "Visit Status"
-      ],
-      "showVisitInfo": true,
-      "showProvider": true,
-      "programsToFilter": [],
-      "showReferredOutTests": true,
-      "conceptNamesToFilter": [
-        "Haemoglobin (Blood)"
-      ],
-      "conceptValuesToFilter": [
-        "10..100"
-      ],
-      "forDataAnalysis": true,
-      "excludeColumns": [
-        "address3"
-      ],
-      "showOrderDateTime": true
-    }
-  },
-  "GenericLabOrderReportAggregation": {
-    "name": "Test Name vs Gender",
-    "type": "aggregation",
-    "requiredPrivilege": "app:reports",
-    "config": {
-      "report": {
+    "GenericLabOrderReport": {
+        "name": "Lab Order Results",
         "type": "labOrders",
+        "requiredPrivilege": "app:reports",
         "config": {
-          "forDataAnalysis": true,
-          "showVisitInfo": true
+            "patientAttributes": [
+                "caste",
+                "class",
+                "education",
+                "occupation",
+                "primaryContact"
+            ],
+            "patientAddresses": [
+                "address3",
+                "city_village"
+            ],
+            "visitAttributes": [
+                "Visit Status"
+            ],
+            "showVisitInfo": true,
+            "showProvider": true,
+            "programsToFilter": [],
+            "showReferredOutTests": true,
+            "conceptNamesToFilter": [
+                "Haemoglobin (Blood)"
+            ],
+            "conceptValuesToFilter": [
+                "10..100"
+            ],
+            "forDataAnalysis": true,
+            "excludeColumns": [
+                "address3"
+            ],
+            "showOrderDateTime": true
         }
-      },
-      "rowGroups": [
-        "Test Name"
-      ],
-      "columnGroups": [
-        "Gender"
-      ],
-      "distinctGroups": [
-        "Patient Identifier"
-      ]
+    },
+    "GenericLabOrderReportAggregation": {
+        "name": "Test Name vs Gender",
+        "type": "aggregation",
+        "requiredPrivilege": "app:reports",
+        "config": {
+            "report": {
+                "type": "labOrders",
+                "config": {
+                    "forDataAnalysis": true,
+                    "showVisitInfo": true
+                }
+            },
+            "rowGroups": [
+                "Test Name"
+            ],
+            "columnGroups": [
+                "Gender"
+            ],
+            "distinctGroups": [
+                "Patient Identifier"
+            ]
+        }
     }
-  }
 }

@@ -81,6 +81,27 @@
         "maxConceptSetLevels": 3,
         "allowOnlyCodedDiagnosis": false,
         "conceptSetUI": {
+            "COVID-19-Starter, Vaccine Recipient Category": {
+                "dropdown": true
+            },
+            "COVID-19-Starter, Reason for not eligible for vaccine": {
+                "multiSelect": true
+            },
+            "COVID-19-Starter, Comorbidities": {
+                "multiSelect": true
+            },
+            "Vaccine lot expiration date": {
+                "allowFutureDates": true
+            },
+            "Date medication refills due": {
+                "allowFutureDates": true
+            },
+            "COVID-19-Starter, Side effects reported after vaccination": {
+                "allowAddMore": true
+            },
+            "COVID-19-Starter, Symptoms": {
+                "multiSelect": true
+            },
             "Chief Complaint Data": {
                 "autocomplete":true,
                 "codedConceptName":"Chief Complaint",
