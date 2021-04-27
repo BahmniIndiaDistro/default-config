@@ -61,7 +61,7 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-
+            "readOnlyExtraIdentifiers": ["Health ID"],
             "autoCompleteFields":["familyName", "caste"],
             "defaultIdentifierPrefix": "GAN",
             "defaultVisitType": "OPD",
