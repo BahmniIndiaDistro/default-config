@@ -1,0 +1,15 @@
+name: Build Default Config
+
+on: [ workflow_dispatch ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@stream1/master
+      - run: rm -rf coverage/ && /bin/bash ./scripts/package.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: DefaultConfig
+          path: target/defaultconfig.zip
