@@ -15,4 +15,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: DefaultConfig
-          path: target/defaultconfig.zip
+          path: default-config.zip
