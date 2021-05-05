@@ -1,13 +1,16 @@
 name: Build Default Config
 
-on: [ workflow_dispatch ]
+on:
+  push:
+    branches: [ git-actions-test ]
+  workflow_dispatch:
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@stream1/master
+      - uses: actions/checkout@v2
       - run: rm -rf coverage/ && /bin/bash ./scripts/package.sh
       - uses: actions/upload-artifact@v2
         with:
