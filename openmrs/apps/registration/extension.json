@@ -77,7 +77,8 @@
         "src" : "/ndhm/index.html",
         "controller": "HealthIdVerificationController",
         "extensionParams": {
-            "hipUrl" : "https://ndhm-dev.bahmni-covid19.in/hiprovider"
+            "hipUrl" : "https://ndhm-dev.bahmni-covid19.in/hiprovider",
+            "bahmniUrl": "https://192.168.33.10/openmrs/ws/rest/v1/hip"
         }
     }
 }
