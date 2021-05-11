@@ -2,7 +2,7 @@ name: Build Default Config
 
 on:
   push:
-    branches: [ git-actions-test ]
+    branches: stream1/master
   workflow_dispatch:
 
 jobs:
