@@ -1,0 +1,18 @@
+name: Build Default Config
+
+on:
+  push:
+    branches: stream1/master
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: rm -rf coverage/ && /bin/bash ./scripts/package.sh
+      - uses: actions/upload-artifact@v2
+        with:
+          name: DefaultConfig
+          path: ./target/default_config.zip
