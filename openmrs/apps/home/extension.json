@@ -144,7 +144,7 @@
     "id": "bahmni.ndhm.hiu",
     "extensionPointId": "org.bahmni.home.dashboard",
     "type": "link",
-    "translationKey": "MODULE_LABEL_NDHMHIU_CONSOLE_KEY",
+    "translationKey": "MODULE_LABEL_NDHMHIU_KEY",
     "url": "****",
     "icon": "fa fa-hospital-o",
     "order": 15,
