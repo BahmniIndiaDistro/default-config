@@ -139,6 +139,15 @@
     "icon": "fa fa-calendar",
     "order": 14,
     "requiredPrivilege": "app:appointments"
+  },
+  "ndhmHIU": {
+    "id": "bahmni.ndhm.hiu",
+    "extensionPointId": "org.bahmni.home.dashboard",
+    "type": "link",
+    "translationKey": "MODULE_LABEL_NDHMHIU_KEY",
+    "url": "****",
+    "icon": "fa fa-hospital-o",
+    "order": 15,
+    "requiredPrivilege": "app:admin"
   }
-
 }
