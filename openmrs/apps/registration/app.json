@@ -105,12 +105,23 @@
             },
             "fieldValidation" : {
                 "email" : {"pattern" : "^(?=.{1,40}$)(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,4})$", "errorMessage" : "Should be a valid email address"},
-                "primaryContact" : {"pattern" : "[0-9]{8,10}", "errorMessage" : "Should be 12 characters starting with 91 (country code)"},
+                "primaryContact" : {"pattern" : "^([+]91[-]?|91|)?([1-9]{1}[0-9]{9})$", "errorMessage" : "Contact should be this in format: +91-xxxxxxxxxx | 91xxxxxxxxxx | xxxxxxxxxx | +91xxxxxxxxxx"},
+                "secondaryContact" : {"pattern" : "^([+]91[-]?|91|)?([1-9]{1}[0-9]{9})$", "errorMessage" : "Contact should be this in format: +91-xxxxxxxxxx | 91xxxxxxxxxx | xxxxxxxxxx | +91xxxxxxxxxx"},
                 "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
-                "familyName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "givenName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "middleName" : {"pattern" : "[a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "address1" : {"pattern" : "[a-zA-Z0-9\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"}
+                "givenNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "middleNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "familyNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "familyName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "givenName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "middleName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "address1" : {"pattern" : "[ a-zA-Z0-9,\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
+                "address2" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
+                "address3" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
+                "cityVillage" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "countyDistrict" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "primaryRelative" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+                "secondaryIdentifier" : {"pattern" : "[ a-zA-Z0-9\\s]{0,}", "errorMessage" : "Should contain characters"},
+                "debt" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be a number"}
             },
             "patientSearch": {
                 "address": {

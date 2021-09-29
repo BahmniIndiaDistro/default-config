@@ -13,7 +13,7 @@ Bahmni.Registration.customValidator = {
     },
     "caste": {
         method: function (name, value, personAttributeDetails) {
-            return value.match(/^\w+$/);
+            return value.match(/^[a-zA-Z ]*$/);
         },
         errorMessage: "REGISTRATION_CASTE_TEXT_ERROR_KEY"
     }
