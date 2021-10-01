@@ -18,6 +18,10 @@
             {
                 "id": "org.bahmni.registration.conceptSetGroup.observations",
                 "description": "Registration Second Page Forms"
+            },
+            {
+                "id": "org.bahmni.registration.identifier.ndhm.source",
+                "description": "NDHM HealthID Verification"
             }
         ],
         "contextModel": [
@@ -25,6 +29,7 @@
             "activeVisitUuid"
         ],
         "config" : {
+            "mandatoryPersonAttributes" : ["primaryContact"],
             "patientInformation": {
                 "additionalPatientInformation": {
                     "title": "Additional Patient Information",
@@ -37,11 +42,6 @@
                         "debt",
                         "cluster",
                         "email"
-                    ]
-                },
-                "hidden": {
-                    "attributes": [
-                        "primaryContact"
                     ]
                 },
                 "defaults":  {
@@ -57,7 +57,7 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-
+            "readOnlyExtraIdentifiers": ["Health ID","PHR Address"],
             "autoCompleteFields":["familyName", "caste"],
             "defaultIdentifierPrefix": "GAN",
             "defaultVisitType": "OPD",
