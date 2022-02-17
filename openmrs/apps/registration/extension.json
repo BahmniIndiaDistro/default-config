@@ -75,10 +75,12 @@
         "extensionPointId": "org.bahmni.registration.identifier.ndhm.source",
         "type": "link",
         "src" : "/ndhm/index.html",
-        "controller": "HealthIdVerificationController",
         "extensionParams": {
-            "hipUrl" : "https://ndhm-dev.bahmni-covid19.in/hiprovider",
-            "bahmniUrl": "https://ndhm-dev.bahmni-covid19.in/openmrs/ws/rest/v1/hip"
+            "identifierType": [
+                "ABHA-ID",
+                "ABHA-ADDRESS"
+            ],
+            "linkDisplay": "Verify ABHA"
         }
     }
 }
