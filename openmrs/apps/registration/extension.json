@@ -72,12 +72,12 @@
     },
     "NDHMIdentifierLookup":{
         "id": "org.bahmni.registration.identifier.ndhmIdentifierSrc",
-        "extensionPointId": "org.bahmni.registration.identifier.ndhm.source",
+        "extensionPointId": "org.bahmni.registration.identifier",
         "type": "link",
         "src" : "/ndhm/index.html",
         "extensionParams": {
             "identifierType": [
-                "ABHA-ID",
+                "ABHA",
                 "ABHA-ADDRESS"
             ],
             "linkDisplay": "Verify ABHA"
