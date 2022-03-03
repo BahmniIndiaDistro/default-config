@@ -20,7 +20,7 @@
                 "description": "Registration Second Page Forms"
             },
             {
-                "id": "org.bahmni.registration.identifier.ndhm.source",
+                "id": "org.bahmni.registration.identifier",
                 "description": "NDHM HealthID Verification"
             }
         ],
@@ -57,7 +57,7 @@
                 "Doctor":"provider",
                 "Parent":"patient"
             },
-            "readOnlyExtraIdentifiers": ["Health ID","PHR Address"],
+            "readOnlyExtraIdentifiers": ["ABHA","ABHA Address"],
             "autoCompleteFields":["familyName", "caste"],
             "defaultIdentifierPrefix": "GAN",
             "defaultVisitType": "OPD",
@@ -114,7 +114,7 @@
                 "familyName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "givenName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
                 "middleName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
-                "address1" : {"pattern" : "[ a-zA-Z0-9,\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
+                "address1" : {"pattern" : "[ a-zA-Z0-9/,\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
                 "address2" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
                 "address3" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
                 "cityVillage" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
