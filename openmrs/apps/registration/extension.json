@@ -72,13 +72,22 @@
     },
     "NDHMIdentifierLookup":{
         "id": "org.bahmni.registration.identifier.ndhmIdentifierSrc",
-        "extensionPointId": "org.bahmni.registration.identifier.ndhm.source",
+        "extensionPointId": "org.bahmni.registration.identifier",
         "type": "link",
         "src" : "/ndhm/index.html",
-        "controller": "HealthIdVerificationController",
         "extensionParams": {
-            "hipUrl" : "https://ndhm-dev.bahmni-covid19.in/hiprovider",
-            "bahmniUrl": "https://ndhm-dev.bahmni-covid19.in/openmrs/ws/rest/v1/hip"
+            "identifierType": [
+                "ABHA",
+                "ABHA Address"
+            ],
+            "nonEditable": ["givenName","middleName","familyName","gender","birthDate","age"],
+            "linkDisplay": "Verify ABHA",
+            "addressMap": {
+                "city": "cityVillage",
+                "state": "stateProvince",
+                "postalCode": "postalCode",
+                "line": "address1"
+            }
         }
     }
 }
