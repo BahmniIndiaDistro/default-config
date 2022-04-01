@@ -4,7 +4,9 @@ on:
   push:
     branches: stream1/master
   workflow_dispatch:
-
+env:
+  ORG_NAME: BahmniIndiaDistro
+  EVENT_TYPE: default-config-trigger
 jobs:
   build:
 
