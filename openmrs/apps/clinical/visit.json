@@ -43,6 +43,11 @@
                 "displayOrder": 2,
                 "config": { }
             }
+        },
+        "encounterContext": {
+            "filterEncounterTypes": [
+                "Consultation"
+            ]
         }
     },
     "dischargeSummary":{
@@ -157,6 +162,11 @@
                     "scope": "latest"
                 }
             }
+        },
+        "encounterContext": {
+            "filterEncounterTypes": [
+                "Consultation"
+            ]
         }
     },
     "orders":{
