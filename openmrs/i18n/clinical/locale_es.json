@@ -27,7 +27,13 @@
   "DASHBOARD_TITLE_PATIENT_INFORMATION_KEY": "Información del paciente",
   "DASHBOARD_TITLE_BACTERIOLOGY_RESULTS_KEY":"Resultados de Bacteriología",
   "DASHBOARD_TITLE_FORMS_DISPLAY_CONTROL_KEY":"Formularios",
-
+  "DASHBOARD_TITLE_GROWTH_CHART": "Tabla de crecimiento",
+  "DASHBOARD_TITLE_BLOOD_PRESSURE": "PA",
+  "DASHBOARD_TITLE_WEIGHT_BMI": "Peso/índice de masa corporal",
+  "DASHBOARD_TITLE_DIABETES_BLOOD_SUGAR": "Diabetes/Azúcar sangre",
+  "DASHBOARD_TITLE_PULSE": "Pulso",
+  "DASHBOARD_TITLE_FORMS2_DISPLAY_CONTROL_KEY":"Formulario-2",
+  "DASHBOARD_TITLE_FORMS2_OBS_TO_OBS_DISPLAY_CONTROL_KEY":"Observaciones Formulario-2",
 
   "DASHBOARD_TAB_GENERAL_KEY": "General",
   "DASHBOARD_TAB_TRENDS_KEY": "Tendencias",
@@ -62,13 +68,12 @@
   "CONSULTATION_PAGE_KEY" :"Consulta",
   "PROGRAM_MANAGEMENT_PAGE_KEY":"Página de administración del programa",
   "DISCHARGE_SUMMARY_PAGE_KEY":"Página de resumen de Alta",
-  "PATIENT_ADT_PAGE_KEY":"Patient ADT Page",
+  "PATIENT_ADT_PAGE_KEY":"Página ADT del Paciente",
   "PATIENT_DASHBOARD_KEY":"Panel del paciente",
   "PATIENT_VISIT_PAGE_KEY":"Página de visitas del paciente",
   "HOME_DASHBOARD_KEY":"Panel de inicio",
   "MEDICATION_CHANGE_DURATION_BUTTON": "Cambiar Duración",
   "DASHBOARD_TITLE_Consultation_KEY": "Notas de la consulta",
-
   "DASHBOARD_TITLE_APPOINTMENTS_KEY": "Cita",
   "DASHBOARD_APPOINTMENTS_SLOT_KEY": "Ranura",
   "DASHBOARD_APPOINTMENTS_SERVICE_KEY": "Servicio",
@@ -80,5 +85,15 @@
   "DASHBOARD_UPCOMING_APPOINTMENTS_KEY": "Citas futuras",
   "DASHBOARD_UPCOMING_APPOINTMENTS_KEY_LINK": "Vista de listado",
   "DASHBOARD_NO_PAST_APPOINTMENTS_KEY": "Sin citas pasadas",
-  "DASHBOARD_NO_UPCOMING_APPOINTMENTS_KEY": "SIn citas futuras"
+  "DASHBOARD_NO_UPCOMING_APPOINTMENTS_KEY": "SIn citas futuras",
+  "DASHBOARD_TELECON_KEY": "Teleconsulta",
+  "DASHBOARD_JOIN_TELECON_KEY": "Unirse a teleconsulta",
+  "DASHBOARD_TITLE_FORMS2_DISPLAY_EDIT_FORMS2_FORMS": "Mostrar y editar formas (2.0)",
+  "PROGRAM_HIV_PROGRAM": "Programa de VIH",
+  "PROGRAM_TB_PROGRAM": "Programa de TB",
+  "PROGRAM_ID_NUMBER": "Número de ID",
+  "PROGRAM_TREATMENT_DATE": "Fecha de Tratamiento",
+  "PROGRAM_COMORBIDITES": "Re- Incidencias",
+  "PROGRAM_DOCTORINCHARGE": "Doctor a cargo",
+  "PROGRAM_PATIENT_STAGE": "Estado del Paciente"
 }
