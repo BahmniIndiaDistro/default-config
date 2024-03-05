@@ -132,7 +132,11 @@
                     "showAccessionNotes": true,
                     "numberOfVisits": 10,
                     "initialAccessionCount": 1,
-                    "latestAccessionCount": 1
+                    "latestAccessionCount": 1,
+                    "chartConfig": {
+                        "sortResultColumnsLatestFirst":true,
+                        "groupByPanel":true
+                    }
                 }
             },
             "Treatments": {
